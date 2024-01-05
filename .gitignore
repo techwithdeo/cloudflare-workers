@@ -3,6 +3,10 @@
 .dev.vars
 .wrangler/
 
+# production
+
+build/
+
 # Logs
 
 logs

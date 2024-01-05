@@ -1,0 +1,18 @@
+name = "photon-library"
+main = "src/index.ts"
+compatibility_date = "2023-10-30"
+minify = false
+
+[dev]
+ip = "127.0.0.1"
+port = 8080
+local_protocol = "http"
+
+[vars]
+ENVIRONMENT = "development"
+
+[env.production]
+minify = true
+
+[env.production.vars]
+ENVIRONMENT = "production"
