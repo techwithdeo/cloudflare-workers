@@ -4,9 +4,13 @@
   "private": true,
   "scripts": {
     "dev": "wrangler dev",
-		"build": "wrangler deploy --dry-run --outdir=./build --env=production",
+    "build": "wrangler deploy --dry-run --outdir=./build --env=production",
     "start": "wrangler dev",
     "deploy": "wrangler deploy --env=production"
+  },
+  "dependencies": {
+    "@cf-wasm/photon": "^0.1.7",
+    "@cf-wasm/png": "^0.1.7"
   },
   "devDependencies": {
     "@cloudflare/workers-types": "^4.20230419.0",

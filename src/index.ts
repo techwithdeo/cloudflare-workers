@@ -1,9 +1,5 @@
-import * as photon from '@wasm/photon';
-import * as png from '@wasm/png';
-
-// ! No more needed
-// photon.initCloudflare();
-// pngs.initCloudflare();
+import { PhotonImage, resize } from '@cf-wasm/photon';
+import { encode } from '@cf-wasm/png';
 
 const worker: ExportedHandler<Bindings> = {
 	async fetch() {
@@ -17,13 +13,13 @@ const worker: ExportedHandler<Bindings> = {
 			return new Response("404: Error fetching image");
 		}
 
-		const inputImage = photon.PhotonImage.new_from_byteslice(imageBytes);
+		const inputImage = PhotonImage.new_from_byteslice(imageBytes);
 
 		// resizing using photon
-		const outputImage = photon.resize(inputImage, inputImage.get_width() * 0.5, inputImage.get_height() * 0.5, 1);
+		const outputImage = resize(inputImage, inputImage.get_width() * 0.5, inputImage.get_height() * 0.5, 1);
 
 		// encoding using png
-		const outputPng = png.encode(outputImage.get_raw_pixels(), outputImage.get_width(), outputImage.get_height());
+		const outputPng = encode(outputImage.get_raw_pixels(), outputImage.get_width(), outputImage.get_height());
 
 		const imageResponse = new Response(outputPng, {
 			headers: {
